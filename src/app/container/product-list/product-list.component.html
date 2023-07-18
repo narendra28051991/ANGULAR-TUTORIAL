@@ -1,0 +1,18 @@
+<app-filter
+    [all]="totalProducts"
+    [inStock]="totalProductsInStock"
+    [outOfStock]="totalProductsOutOfStock"
+    (changedFilter)="onFilterChanged($event)"
+>
+</app-filter>
+<!-- *ngIf="selectedFilter === 'all' || (selectedFilter === 'in-stock' && product.is_in_inventory === true) || (selectedFilter === 'out-of-stock' && product.is_in_inventory === false)" -->
+<div class="ekart--products--container">
+    <ng-container *ngFor="let product of products">
+        <app-product
+            [product]="product"
+            *ngIf="searchText === '' || product.name.toLowerCase().includes(searchText)"
+            (click)="selectedProduct = product"
+        >
+        </app-product>
+    </ng-container>
+</div>
